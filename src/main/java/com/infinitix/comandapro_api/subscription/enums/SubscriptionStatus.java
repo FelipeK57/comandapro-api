@@ -1,4 +1,4 @@
-package com.infinitix.comandapro_api.suscription.enums;
+package com.infinitix.comandapro_api.subscription.enums;
 
 /**
  * Enumeración que define los posibles estados de una suscripción

@@ -1,21 +1,17 @@
-package com.infinitix.comandapro_api.suscription.entity;
-
-import java.sql.Date;
-import java.time.LocalDateTime;
+package com.infinitix.comandapro_api.user.entity;
 
 import com.infinitix.comandapro_api.restaurant.entity.Restaurant;
-import com.infinitix.comandapro_api.suscription.enums.SubscriptionStatus;
+import com.infinitix.comandapro_api.user.enums.UserRoles;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,25 +23,30 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "suscriptions")
-public class Suscription {
+@Table(name = "users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
-    
+
+    @Column(nullable = false)
+    private String full_name;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    private SubscriptionStatus status;
+    @Column(name = "role", nullable = false)
+    private UserRoles role;
 
     @Column(nullable = false)
-    private LocalDateTime start_date;
-
-    @Column(nullable = false)
-    private LocalDateTime end_date;
-    
+    private boolean active;
 }
