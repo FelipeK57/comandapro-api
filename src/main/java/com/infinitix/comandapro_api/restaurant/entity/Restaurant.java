@@ -28,7 +28,7 @@ public class Restaurant {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = true)
     private String email;
 
     @Column(unique = false, nullable = true)
@@ -44,7 +44,5 @@ public class Restaurant {
     @Column(nullable = false)
     private boolean active;
 
-    @Column(nullable = false)
-    private String password;
 
 }
