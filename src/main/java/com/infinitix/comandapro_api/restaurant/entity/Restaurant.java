@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -26,6 +28,23 @@ public class Restaurant {
     @Column(unique = true, nullable = false)
     private String name;
 
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    @Column(unique = false, nullable = true)
+    private Double phone;
+
+    @Column(unique = false, nullable = true)
+    private String address;
+
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
     @Column(nullable = false)
     private boolean active;
+
+    @Column(nullable = false)
+    private String password;
+
 }
