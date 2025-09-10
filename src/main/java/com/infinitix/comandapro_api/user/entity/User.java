@@ -35,7 +35,7 @@ public class User {
     private Restaurant restaurant;
 
     @Column(nullable = false)
-    private String full_name;
+    private String fullName;
 
     @Column(unique = true, nullable = false)
     private String email;
