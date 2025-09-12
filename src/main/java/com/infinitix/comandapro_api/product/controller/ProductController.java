@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.infinitix.comandapro_api.product.dto.CreateProductRequest;
 import com.infinitix.comandapro_api.product.entitiy.Product;
 import com.infinitix.comandapro_api.product.service.ProductService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/products")
@@ -25,8 +26,8 @@ public class ProductController {
 
     //crear producto
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productService.saveProduct(product);
+    public Product createProduct(@RequestBody CreateProductRequest request) {
+        return productService.createProduct(request);
     }
 
     //obtener producto por id
@@ -39,6 +40,12 @@ public class ProductController {
     @GetMapping
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
+    }
+
+    //obtener productos por restaurante
+    @GetMapping("/restaurant/{restaurantId}")
+    public List<Product> getProductsByRestaurant(@PathVariable Long restaurantId) {
+        return productService.getAllProducts(restaurantId);
     }
 
     //actualizar producto

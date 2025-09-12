@@ -22,7 +22,7 @@ public class ProductService {
 
     //crear producto desde DTO
     public Product createProduct(CreateProductRequest request) {
-        // Buscar el restaurante
+        // Buscar el restaurante'
         Restaurant restaurant = restaurantRepository.findById(request.getRestaurantId())
             .orElseThrow(() -> new IllegalArgumentException("Restaurante no encontrado con ID: " + request.getRestaurantId()));
         
@@ -63,6 +63,11 @@ public class ProductService {
     //obtener todos los productos
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+    
+    //obtener productos por restaurante
+    public List<Product> getAllProducts(Long restaurantId) {
+        return productRepository.findByRestaurantIdAndAvailableTrue(restaurantId);
     }
     
     //actualizar producto
