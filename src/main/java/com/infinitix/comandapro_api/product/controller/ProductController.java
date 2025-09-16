@@ -3,6 +3,7 @@ package com.infinitix.comandapro_api.product.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class ProductController {
     private ProductService productService;
 
     //crear producto
+    @CrossOrigin(origins = "http://localhost:4201")
     @PostMapping
     public Product createProduct(@RequestBody CreateProductRequest request) {
         return productService.createProduct(request);
@@ -49,12 +51,14 @@ public class ProductController {
     }
 
     //actualizar producto
+    @CrossOrigin(origins = "http://localhost:4201")
     @PutMapping("/{id}")
     public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
         return productService.updateProduct(id, product);
     }
 
-    //eliminar producto
+    //eliminar producto\
+    @CrossOrigin(origins = "http://localhost:4201")
     @DeleteMapping ("/{id}")
     public void deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
